@@ -18,11 +18,6 @@ app.use(cookieParser())
 app.use(cors({
     origin : frontendURL,
 }))
-
-async function startServer(){
-    try{
-        await connectDB()
-
         // Authorization
 
         app.use('/user', authRoutes)
@@ -50,12 +45,8 @@ async function startServer(){
 
         app.use('/seller', sellerRoutes )
 
-
-    }catch(err){
-        console.log(`Server Error: ${err.message}`)
-    }
-}
-
-startServer()
+connectDB()
+  .then(() => console.log('Database connected successfully'))
+  .catch((err) => console.log(`Database connection error: ${err.message}`));
 
 module.exports = app;
