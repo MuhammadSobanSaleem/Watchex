@@ -25,16 +25,28 @@ authRouter.post('/signup', async (req, res) => {
 
                 if(req.body.isSeller == true){
                     await Seller.create(req.body)
-                    res.send(`Seller Created with email: ${req.body.email}`)
+                    res.status(201).json({ message: `Seller Created with email: ${req.body.email}` })
                     return
                 }
                 await User.create(req.body)
-                res.send(`User Created with email: ${req.body.email}`)
+
+                res.status(201).json({ message: `User Created with email: ${req.body.email}` })
 
                 
             }catch(error){
-                res.status(400).send(error.message)
-                console.log(error)
+                if (error && error.code === 11000) {
+                    res.status(409).json({ error: 'Email already exists' })
+                } else {
+                    const isClientError = error && (
+                        error.name === 'ValidationError' ||
+                        error.name === 'CastError' ||
+                        error.message === 'Email is not valid' ||
+                        error.message === 'Password is not strong'
+                    )
+                    const status = isClientError ? 400 : 500
+                    res.status(status).json({ error: error.message || 'Internal Server Error' })
+                }
+                console.error(error)
             }
 })
 
@@ -51,39 +63,50 @@ authRouter.post('/login', async (req, res) => {
                 const account = user || seller
 
                 if(!account){
-                    res.status(404).send('User does not exist! Please signup')
+                    return res.status(404).json({ error: 'User does not exist! Please signup' })
                 }
                 
                 const passwordMatched = await bcrypt.compare(password, account.password)
                 
                 if(!passwordMatched){
-                    throw new Error('Invalid Credentials')
+                    return res.status(401).json({ error: 'Invalid Credentials' })
                 }   
                 
                 const token = jwt.sign({id: account._id}, process.env.SECRET_KEY, {expiresIn: '1d'})
                 
-                res.cookie('token', token)
+                res.cookie('token', token, {
+                    httpOnly: true,
+                    secure: false,
+                    sameSite: 'lax',
+                    path: '/'
+                })
 
                 account.lastLogin = new Date()
 
                 await account.save()
 
-                res.send('Login Successful')
+                res.status(200).json({
+                    message: 'Login Successful',
+                    email: account.email,
+                })
 })
 
 authRouter.get('/profile', jwtAuth , async (req, res) => {
     try{
 
-        const seller = await Seller.findById(req.user.id)
+        const seller = await Seller.findById(req.user.id) // For future use case of seller profile
         const user = await User.findById(req.user.id)
 
         const account = seller || user
-        if(!account){
-            res.status(404).send('Account not found')
-        }
-        res.send(`Welcome!, ${account}`)
+        
+        if(!account) return res.status(404).json({ error: 'Account not found' })
+        
+        res.status(200).json({email: account.email});
+
     }catch(error){
-        res.send(error)
+        console.error(error)
+        const status = (error.name === 'ValidationError' || error.name === 'CastError') ? 400 : 500
+        res.status(status).json({ error: error.message || 'Internal Server Error' })
     }
 })
 
@@ -96,14 +119,16 @@ authRouter.post('/logout', jwtAuth, async (req, res) => {
 
                 const account = seller || user
                 
-                res.clearCookie('token', token)
+                res.clearCookie('token')
 
                 account.lastLogout = new Date()
                 await account.save()
 
                 res.status(200).json({message: 'Successfully Logged Out'})
             }catch(error){
-                res.send(error)
+                console.error(error)
+                const status = (error.name === 'ValidationError' || error.name === 'CastError') ? 400 : 500
+                res.status(status).json({ error: error.message || 'Internal Server Error' })
             }
 })
 

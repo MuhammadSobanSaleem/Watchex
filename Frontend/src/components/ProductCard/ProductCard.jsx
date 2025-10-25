@@ -2,13 +2,13 @@ import React from 'react'
 
 const ProductCard = ({imageURl, title, description, price}) => {
 return (
-    <div className='relative h-[476px] w-70 bg-transparent rounded-2xl shadow-lg'>
+    <div className='relative h-[446px] w-64  rounded-2xl shadow-lg'>
 
-            <div className='absolute inset-0 flex flex-col gap-1 p-2 backdrop-blur-[10px]  bg-[linear-gradient(120deg,rgba(255,255,255,0.2),rgba(255,255,255,0.1))] rounded-2xl max-w-[100%] shadow-lg'>
+            <div className='absolute inset-0 flex flex-col gap-1 p-2 backdrop-blur-[6px]  bg-[linear-gradient(120deg,rgba(217,217,217,0.4),rgba(217,217,217,0.5))] rounded-2xl max-w-[100%] border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'>
                 <div className="">
 
                 <img className='rounded-2xl w-[100%] aspect-square' src={imageURl} alt={title} />
-                <div className='p-2'>
+                <div className='p-2 flex flex-col gap-2 justify-center items-center h-[150px] w-full'>
 
                     <h2 className='text-3xl font-pops font-semibold text-[#000000]'><span className='text-[25px] font-oleo text-neutral-900'>Watchex</span><br />{title}</h2>
 

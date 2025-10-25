@@ -17,6 +17,7 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
     origin : frontendURL,
+    credentials : true
 }))
 
 async function startServer(){
@@ -25,7 +26,7 @@ async function startServer(){
 
         // Authorization
 
-        app.use('/user', authRoutes)
+        app.use('/auth', authRoutes)
 
         // Products
 
@@ -50,7 +51,7 @@ async function startServer(){
 
         app.use('/seller', sellerRoutes )
 
-        const port = process.env.PORT || 5000
+        const port = process.env.PORT || 3000
         
         app.listen(port, () => {
             console.log(`Server successfully connected on port ${port}`)
