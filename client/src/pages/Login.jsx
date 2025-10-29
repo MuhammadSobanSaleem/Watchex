@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import loginBg from "../assets/images/login-bg.jpg";
 import { validateEmail } from "../components/utils/validators.js";
 import Swal from "sweetalert2";
@@ -57,7 +57,7 @@ const Login = () => {
             </div>
         `
         }).then(() => {
-        navigate("/");
+          navigate("/");
         });
 
     } catch (error) {
@@ -140,9 +140,9 @@ const Login = () => {
 
           <div className="mt-6 text-center text-sm text-white">
             Don't have an account?{" "}
-            <a href="/signup" className="font-semibold underline">
+            <Link to="/signup" className="font-semibold underline">
               Sign up
-            </a>
+            </Link>
           </div>
         </div>
       </div>
