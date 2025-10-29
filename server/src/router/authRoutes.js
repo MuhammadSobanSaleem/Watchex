@@ -119,7 +119,12 @@ authRouter.post('/logout', jwtAuth, async (req, res) => {
 
                 const account = seller || user
                 
-                res.clearCookie('token', token)
+                res.clearCookie("token", {
+                    httpOnly: true,
+                    secure: process.env.NODE_ENV === "production", // true on Vercel
+                    sameSite: "none",
+                    path: "/"
+                });
 
                 account.lastLogout = new Date()
                 await account.save()
