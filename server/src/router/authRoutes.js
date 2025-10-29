@@ -119,7 +119,7 @@ authRouter.post('/logout', jwtAuth, async (req, res) => {
 
                 const account = seller || user
                 
-                res.clearCookie('token')
+                res.clearCookie('token', token)
 
                 account.lastLogout = new Date()
                 await account.save()
