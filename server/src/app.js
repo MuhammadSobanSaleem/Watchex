@@ -11,13 +11,18 @@ const authRoutes = require('./router/authRoutes.js')
 const sellerRoutes = require('./router/sellerRoutes.js')
 const cartRoutes = require('./router/cartRoutes.js')
 
-const frontendURL = process.env.FRONTEND_URL
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://watchex-seven.vercel.app"
+];
+
 
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin : frontendURL,
+    origin : allowedOrigins,
     credentials : true
 }))
 
