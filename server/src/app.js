@@ -27,22 +27,22 @@ async function startServer(){
 
         // Authorization
 
-        app.use('/auth', authRoutes)
+        app.use('/api/auth', authRoutes)
 
         // Products
 
-        app.get('/products', async (req, res) => {
+        app.get('/api/products', async (req, res) => {
             const products = await Product.find()
 
             res.send(products.length > 0 ? products : 'Database Empty')
         })
 
-        app.get('/products/premium', async (req, res) => {
+        app.get('/api/products/premium', async (req, res) => {
             const products = await Product.find({ category: 'Premium' })
 
             res.send(products.length > 0 ? products : 'No Premium Products Found')
         })
-        app.get('/products/luxury', async (req, res) => {
+        app.get('/api/products/luxury', async (req, res) => {
             const products = await Product.find({ category: 'Luxury' })
 
             res.send(products.length > 0 ? products : 'No Luxury Products Found')
@@ -50,8 +50,8 @@ async function startServer(){
 
         // Products CRUD
 
-        app.use('/seller', sellerRoutes )
-        app.use('/cart', cartRoutes )
+        app.use('/api/seller', sellerRoutes )
+        app.use('/api/cart', cartRoutes )
 
         const port = process.env.PORT || 3000
         
