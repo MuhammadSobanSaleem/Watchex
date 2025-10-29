@@ -9,6 +9,7 @@ const {Product} = require('./model/productSchema.js')
 
 const authRoutes = require('./router/authRoutes.js')
 const sellerRoutes = require('./router/sellerRoutes.js')
+const cartRoutes = require('./router/cartRoutes.js')
 
 const frontendURL = process.env.FRONTEND_URL
 
@@ -50,6 +51,7 @@ async function startServer(){
         // Products CRUD
 
         app.use('/seller', sellerRoutes )
+        app.use('/cart', cartRoutes )
 
         const port = process.env.PORT || 3000
         

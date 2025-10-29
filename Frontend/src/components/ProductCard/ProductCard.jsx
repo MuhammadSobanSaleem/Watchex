@@ -17,7 +17,19 @@ return (
                     <div className="flex justify-between items-center mt-4 absolute bottom-4 left-[50%] translate-x-[-50%] w-[90%]">
 
                         <span className='font-bold text-[22px] text-gray-800'>${price}</span>
-                        <button className='w-[60%] p-1 backdrop-blur-[10px]  bg-[linear-gradient(120deg,rgba(255,255,255,0.2),rgba(255,255,255,0.1))] rounded-2xl border-[1.5px] border-white/10 shadow-lg font-pops text-[15px] hover:backdrop-opacity-40 transition-all duration-600 cursor-pointer'>Buy Now</button>
+                        <button
+                        className="group relative flex items-center justify-center w-12 h-12 rounded-full gap-4
+                                    bg-white/10 backdrop-blur-md border border-white/20 shadow-lg
+                                    hover:bg-white/20 transition-all duration-300 hover:shadow-cyan-500/40
+                                    hover:scale-105 active:scale-95"
+                        >
+                        {/* Neon glow ring */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/30 to-blue-500/30 
+                                        opacity-0 group-hover:opacity-100 blur-md transition duration-300"></div>
+
+                        {/* Cart Icon */}
+                        <i className="fa-solid fa-cart-shopping" style={{ color: '#ffffff' }}></i>
+                        </button>
 
                     </div>
                     </div>

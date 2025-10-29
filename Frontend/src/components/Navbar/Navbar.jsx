@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import watchPfp from '../../assets/images/cropped_watch_pfp.png';
+import watchPfp from '../../assets/images/watch-pfp-default.png';
+import cartIcon from '../../assets/images/cart-glass-nobg.png';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -64,6 +65,8 @@ const Navbar = () => {
         </div>
             <ul className='flex gap-6 items-center mr-10 text-[#1E1E1E] font-pops text-[14px]'>
                 <li className='relative pt-[5px] pb-[5px] text-[15px] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:duration-500 hover:after:scale-x-100'><Link to="/products">Products</Link></li>
+
+                <li><Link to="/cart"><img src={cartIcon} alt="Cart" className="w-10 h-10" /></Link></li>
                 {user 
                 ? <li className="relative group">
                     <img src={watchPfp} alt="Profile" className="w-10 h-10 rounded-full cursor-pointer transition-all duration-300 hover:scale-105" />
