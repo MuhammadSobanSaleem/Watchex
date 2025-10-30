@@ -1,5 +1,6 @@
 # ⌚ Watchex – Modern Watch Store Web App  
 
+![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white&style=for-the-badge)
 ![React](https://img.shields.io/badge/Frontend-ReactJS-61DAFB?logo=react&logoColor=white&style=for-the-badge)
 ![TailwindCSS](https://img.shields.io/badge/Styling-TailwindCSS-38B2AC?logo=tailwindcss&logoColor=white&style=for-the-badge)
 ![ExpressJS](https://img.shields.io/badge/Backend-ExpressJS-000000?logo=express&logoColor=white&style=for-the-badge)
@@ -12,63 +13,69 @@
 
 ---
 
-### 🚧 Project Status
+### 🚧 Project Status  
 > **This project is actively in progress.**  
-> Core authentication, UI design, and home sections are implemented — new pages and backend features (like product management & checkout) are currently being developed.
+> Core authentication, UI design, and home sections are implemented — new backend features like product management & checkout are currently being developed.
 
 ---
 
-### 💎 Overview
-**Watchex** is a **modern, creative, and secure watch store web app** built using the **MERN stack**.  
-It features **JWT-based auto login**, **encrypted authentication**, and a **glassmorphism-inspired UI** with **ReactBits animations** for a premium shopping experience.
+### 🌐 Live Demo  
+🔗 **[Watchex Live Website](https://watchex-seven.vercel.app/)**  
+🧠 Backend API: [https://watchex-server-three.vercel.app](https://watchex-server-three.vercel.app)
 
 ---
 
-### 🚀 Tech Stack
+### 💎 Overview  
+**Watchex** is a **modern, secure, and visually rich watch store web app** built with the **MERN stack**.  
+It features **JWT-based authentication**, **secure cookies**, and a **glassmorphism-inspired animated UI** designed for a premium shopping experience.
+
+---
+
+### 🚀 Tech Stack  
 
 | Category | Technologies |
 |-----------|--------------|
-| **Frontend** | React (Vite), TailwindCSS, ReactBits, SweetAlert2 |
-| **Backend** | ExpressJS, NodeJS |
+| **Frontend** | React (Vite), TailwindCSS, SweetAlert2 |
+| **Backend** | Node.js, Express.js |
 | **Database** | MongoDB + Mongoose |
-| **Authentication** | JWT (Auto Login via HTTP-Only Cookies), bcrypt |
-| **Styling** | TailwindCSS + Glassmorphism |
+| **Authentication** | JWT (HTTP-Only Cookie), bcrypt |
 | **Environment** | dotenv, CORS |
+| **Deployment** | Vercel (Frontend + Backend) |
 
 ---
 
-### ✨ Key Features
+### ✨ Key Features  
 
-✅ **User Authentication (Login + Signup)**  
-✅ **Auto Login via Secure JWT Cookie**  
-✅ **Password Encryption** using bcrypt  
-✅ **Glassmorphism + Animated UI** with ReactBits  
-✅ **Skeleton Cards** for smooth content loading  
-✅ **Responsive Design** for all devices  
-✅ **SweetAlert2 Toasts & Alerts**  
-✅ **Clean Code Structure** for scalability  
+✅ Secure **User Authentication (Login + Signup)**  
+✅ **JWT Auto Login** with HTTP-Only Cookies  
+✅ **Password Hashing** using bcrypt  
+✅ **Glassmorphism + Animated UI**  
+✅ **Skeleton Loading Cards** for smooth UX  
+✅ Fully **Responsive** design  
+✅ **SweetAlert2 Alerts** for better interaction  
+✅ **Scalable folder structure** for future expansion  
 
 ---
 
-### 📜 Pages Overview
+### 📜 Pages Overview  
 
 | Page | Description |
 |------|--------------|
-| 🏠 **Home** | Two product sections (Luxury & Premium) with four watch cards each — includes skeleton loaders |
-| 🔐 **Login** | Authenticated entry using JWT cookie |
-| 🧾 **Signup** | Secure registration with password hashing |
+| 🏠 **Home** | Displays premium & luxury watch sections with skeleton loaders |
+| 🔐 **Login** | Authenticates user via JWT cookies |
+| 🧾 **Signup** | Registers new users securely |
+| 🚪 **Logout** | Clears JWT cookie and logs user out |
 
 ---
 
-### 📂 Project Structure
-
+### 📂 Project Structure  
 ```
 
 Watchex/
-├── client/            # React + Vite Frontend
+├── client/         # React + Vite Frontend
 │   ├── src/
 │   └── ...
-└── server/            # Express Backend (Auth, MongoDB, JWT)
+└── server/         # Express Backend (Auth, MongoDB, JWT)
 ├── models/
 ├── routes/
 └── ...
@@ -77,37 +84,37 @@ Watchex/
 
 ---
 
-### 🧩 Installation & Setup
+### 🧩 Installation & Setup  
 
-#### 1️⃣ Clone Repository
+#### 1️⃣ Clone Repository  
 ```bash
 git clone https://github.com/MuhammadSobanSaleem/Watchex.git
 cd Watchex
 ````
 
-#### 2️⃣ Backend Setup (Express)
+#### 2️⃣ Backend Setup
 
 ```bash
 cd server
 npm install
 ```
 
-Create a `.env` file inside `/server`:
+Create `.env` file:
 
-```ini
+```
 PORT=5000
 MONGODB_URI=your_mongo_connection_string
 JWT_SECRET=your_jwt_secret
 CLIENT_URL=http://localhost:5173
 ```
 
-Start backend:
+Run backend:
 
 ```bash
 npm start
 ```
 
-#### 3️⃣ Frontend Setup (React + Vite)
+#### 3️⃣ Frontend Setup
 
 ```bash
 cd ../client
@@ -119,60 +126,50 @@ npm run dev
 
 ### 🔒 Authentication Flow
 
-* Passwords hashed with **bcrypt**
-* Users receive **JWT in HTTP-Only cookie**
-* Auto-login on refresh via cookie validation
-* Routes protected using **JWT middleware**
+* Passwords hashed using **bcrypt**
+* JWT token stored in **HTTP-Only Cookie**
+* Auto-login supported on refresh
+* Protected routes handled via **JWT middleware**
 
 ---
 
-### ⚙️ Backend Dependencies
+### ⚙️ Dependencies
 
-```
-bcrypt, jsonwebtoken, cors, dotenv, mongoose, express
-```
+**Backend:**
+`bcrypt`, `jsonwebtoken`, `cors`, `dotenv`, `mongoose`, `express`
 
-### 🎨 Frontend Dependencies
-
-```
-react, vite, sweetalert2, reactbits, tailwindcss
-```
+**Frontend:**
+`react`, `vite`, `sweetalert2`, `tailwindcss`
 
 ---
 
 ### 🌟 Future Enhancements
 
-* 🛒 Shopping Cart + Checkout System
-* 💳 Stripe Payment Integration
-* ⭐ Product Details Page
-* 👤 User Dashboard
-* 🛍️ Admin Product Management
-* 🔁 Password Reset via Email
+🛒 Shopping Cart + Checkout
+💳 Stripe Payment Integration
+⭐ Product Details Page
+👤 User Dashboard
+🛍️ Admin Product Management
+🔁 Password Reset via Email
 
 ---
 
 ### 👨‍💻 Author
 
 **Muhammad Soban Saleem**
-💼 Full Stack Developer
-🔗 [GitHub – MuhammadSobanSaleem](https://github.com/MuhammadSobanSaleem)
-📧 *your-email-here*
-🌐 *Portfolio link (optional)*
+💼 MERN Stack Developer
+📧 [sobansaleem713@gmail.com](mailto:sobansaleem713@gmail.com)
+🔗 [LinkedIn – Soban Saleem](https://www.linkedin.com/in/soban-saleem333)
+🌐 [Live Project – Watchex](https://watchex-seven.vercel.app/)
 
 ---
 
 ### ⭐ Support
 
-If you like this project, please **star the repo** ⭐ — it motivates me to keep building amazing things!
-
----
-
-### 📜 License
-
-Licensed under the **MIT License**.
+If you like this project, please **star the repo** ⭐ — it helps me grow and stay motivated!
 
 ---
 
 ### 📷 Screenshots (Coming Soon)
 
-> Will be added after the final UI and deployment phase.
+> Will be added after final UI updates and backend integration.
